@@ -6,12 +6,13 @@
 package mr.angkot;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 /**
  *
  * @author Devina
  */
-public class MrAngkot {
+public class MrAngkot extends Frame {
   
   /**
    * @param args the command line arguments
@@ -22,7 +23,9 @@ public class MrAngkot {
     Angkot a = new Angkot();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setBounds(0, 0, 1366, 730);
+    //window.add(new Background());
     window.add(a);
+    window.add(new Angkot());
     window.setVisible(true);
     
   }
