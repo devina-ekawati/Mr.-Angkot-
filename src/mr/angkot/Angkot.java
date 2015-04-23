@@ -56,7 +56,9 @@ public class Angkot extends JComponent {
   
   @Override
   public void paint (Graphics g) {
-    g.drawRect (x, y, 200, 200);
+    g.setColor(Color.BLUE);
+    g.fillRect (x, y, 100, 50);
+    
     try {
       TimeUnit.MILLISECONDS.sleep(500);
     } catch (InterruptedException ex) {

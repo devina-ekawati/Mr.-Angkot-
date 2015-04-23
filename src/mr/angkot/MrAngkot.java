@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  * @author Devina
  */
 public class MrAngkot {
-
+  
   /**
    * @param args the command line arguments
    */
@@ -21,7 +21,7 @@ public class MrAngkot {
     JFrame window = new JFrame();
     Angkot a = new Angkot();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setBounds(30, 30, 300, 300);
+    window.setBounds(0, 0, 1366, 730);
     window.add(a);
     window.setVisible(true);
     
