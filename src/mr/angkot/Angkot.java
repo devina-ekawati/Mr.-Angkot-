@@ -35,6 +35,13 @@ public class Angkot extends JComponent {
   }
   
   public void move() {
+    /*if (x == 110) {
+      try {
+        TimeUnit.MILLISECONDS.sleep(500);
+      } catch (InterruptedException ex) {
+        Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }*/
     x += 50;
     repaint();
   }
@@ -51,7 +58,7 @@ public class Angkot extends JComponent {
   public void paint (Graphics g) {
     g.drawRect (x, y, 200, 200);
     try {
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.MILLISECONDS.sleep(500);
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
