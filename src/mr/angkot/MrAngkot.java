@@ -57,7 +57,6 @@ public class MrAngkot extends JFrame {
    */
   public static void main(String[] args) {
     // TODO code application logic here
-
     MrAngkot sl = new MrAngkot();
     sl.setVisible(true);
   }
