@@ -43,12 +43,18 @@ public class Angkot extends JComponent {
     y = _y;
   }
   
-  public void move(boolean inX, boolean inY) {
-    if (inX) {
+  public void move(boolean inX, boolean inY, boolean upRight) {
+    if (inX & upRight) {  // angkot di sisi atas
      x += 50;
     }
-    else if (inY) {
+    else if (inY & upRight) { // angkot di sisi kanan
       y += 50;
+    }
+    else if (inX & !upRight) {  // angkot di sisi bawah
+      x -= 50;
+    }
+    else if (inY & !upRight) {  // angkot di sisi kiri
+      y -= 50;
     }
     repaint();
   }
@@ -64,19 +70,10 @@ public class Angkot extends JComponent {
   @Override
   public void paintComponent (Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
-    super.paintComponent(g2d);
-    g2d.setColor(Color.BLUE);
-    g2d.fillRect (x, y, 100, 50);
+    boolean inX, inY, upRight;
     
-    try {
-      TimeUnit.MILLISECONDS.sleep(500);
-    } catch (InterruptedException ex) {
-      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    boolean inX = true;
-    boolean inY = false;
-    if ((x >= 1200) && (y <= 500)) {
-      g2d.clearRect(x, y, 100, 50);
+    super.paintComponent(g2d);
+    if (((x >= 1200) && (y <= 500)) || ((x < 20) && (y > 100))) {
       AffineTransform transform = new AffineTransform();
       transform.rotate(Math.PI/2, x + 100/2, y + 50/2);
       AffineTransform old = g2d.getTransform();
@@ -86,8 +83,31 @@ public class Angkot extends JComponent {
       g2d.setTransform(old);
       inX = false;
       inY = true;
+      if ((x >= 1200) && (y <= 500)) {
+        upRight = true;
+      }
+      else {
+        upRight = false;
+      }
     }
-    move(inX, inY);
+    else {
+      g2d.setColor(Color.BLUE);
+      g2d.fillRect (x, y, 100, 50);
+      inX = true;
+      inY = false;
+      if ((x >= 20) && (y > 500)) {
+        upRight = false;
+      }
+      else {
+        upRight = true;
+      }
+    }
+    
+    try {
+      TimeUnit.MILLISECONDS.sleep(100);
+    } catch (InterruptedException ex) {
+      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    move(inX, inY, upRight);
   } 
 }
-

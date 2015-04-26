@@ -50,7 +50,6 @@ public class MrAngkot extends JFrame {
     lp.add(terminal1, new Integer(2));
     lp.add(terminal2, new Integer(3));
     lp.add(terminal3, new Integer(4));
-    
   }
   
   /**
@@ -61,5 +60,4 @@ public class MrAngkot extends JFrame {
     MrAngkot sl = new MrAngkot();
     sl.setVisible(true);
   }
-  
 }
