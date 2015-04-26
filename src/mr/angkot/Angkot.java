@@ -30,8 +30,8 @@ public class Angkot extends JComponent {
     passengers = new ArrayList();
     capacity = 14;
     color = "Yellow";
-    x = 10;
-    y = 100;
+    x = 100;
+    y = 120;
   }
   
   public Angkot(int _x, int _y) {
@@ -73,7 +73,8 @@ public class Angkot extends JComponent {
     boolean inX, inY, upRight;
     
     super.paintComponent(g2d);
-    if (((x >= 1200) && (y <= 500)) || ((x < 20) && (y > 100))) {
+    if (((x >= 1150) && (y <= 500)) || ((x < 150) && (y > 120))) {
+      // Angkot di sisi kiri atau sisi kanan
       AffineTransform transform = new AffineTransform();
       transform.rotate(Math.PI/2, x + 100/2, y + 50/2);
       AffineTransform old = g2d.getTransform();
@@ -83,19 +84,19 @@ public class Angkot extends JComponent {
       g2d.setTransform(old);
       inX = false;
       inY = true;
-      if ((x >= 1200) && (y <= 500)) {
+      if ((x >= 1150) && (y <= 500)) {  // Angkot di sisi kanan
         upRight = true;
       }
       else {
         upRight = false;
       }
     }
-    else {
+    else {  // Angkot di sisi atas atau sisi bawah
       g2d.setColor(Color.BLUE);
       g2d.fillRect (x, y, 100, 50);
       inX = true;
       inY = false;
-      if ((x >= 20) && (y > 500)) {
+      if ((x >= 150) && (y > 500)) {  // Angkot di sisi bawah
         upRight = false;
       }
       else {
@@ -104,7 +105,7 @@ public class Angkot extends JComponent {
     }
     
     try {
-      TimeUnit.MILLISECONDS.sleep(100);
+      TimeUnit.MILLISECONDS.sleep(500);
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
