@@ -5,33 +5,29 @@
  */
 package mr.angkot;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
  * @author Windows7
  */
-public class Background extends JPanel{
-  private BufferedImage image;
-
-    public Background() {
-       try {                
-          image = ImageIO.read(new File("C:\\Users\\Windows7\\Desktop\\OOP\\Mr.-Angkot-\\conan.jpg"));
-       } catch (IOException ex) {
-            // handle exception...
-       }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, null); // see javadoc for more info on the parameters            
-    }
+public class Background extends JComponent {
+  public Background() {
+    setLayout(null);
+  }
+  
+  @Override
+  public void paintComponent(Graphics g) {
+    Graphics2D g2d = (Graphics2D) g.create();
+    // Trotoar
+    g2d.setColor(Color.LIGHT_GRAY);
+    g2d.fillRect (0,0,1350,692);
+    // Jalan
+    g2d.setColor(Color.GRAY);
+    g2d.fillRect (90,90,1170,512);
+    // Rumput
+    g2d.setColor(Color.GREEN);
+    g2d.fillRect (210,210,930,272);
+  }
 }
