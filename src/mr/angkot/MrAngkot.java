@@ -6,7 +6,12 @@
 package mr.angkot;
 
 import javax.swing.*;
+import javax.imageio.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.net.URL;
+import java.awt.image.*;
+import java.io.*;
 
 /**
  *
@@ -15,7 +20,7 @@ import java.awt.*;
 public class MrAngkot extends JFrame {
   
   public MrAngkot() {
-    super("Mr. Angkot !");
+    super("Mr. Angkot!");
     setSize(1366, 730);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -42,18 +47,23 @@ public class MrAngkot extends JFrame {
     bottom.setBounds(60, 60, 50, 50); */
     
     // Background
-    Background background = new Background();
-    background.setBounds(0,0,1366,730);
-    
+    try {
+        this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("img/bg.png")))));
+    } catch (IOException e) {
+    };
+//    Background background = new Background();
+//    background.setBounds(0,0,1366,730);
+//    lp.add(background,new Integer(0));    
+
     Angkot a1 = new Angkot();
     a1.setBounds(0, 0, 1366, 730);
     
     // Place the buttons in different layers
-    lp.add(background,new Integer(0));
     lp.add(a1, new Integer(1));
     lp.add(terminal1, new Integer(2));
     lp.add(terminal2, new Integer(3));
     lp.add(terminal3, new Integer(4));
+    
   }
   
   /**

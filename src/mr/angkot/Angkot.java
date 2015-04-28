@@ -92,12 +92,12 @@ public class Angkot extends JComponent implements Runnable {
       transform.rotate(Math.PI/2, x + 100/2, y + 50/2);
       AffineTransform old = g2d.getTransform();
       g2d.transform(transform);
-      g2d.setColor(Color.BLUE);
+      g2d.setColor(Color.YELLOW);
       g2d.fillRect ((int) x, (int) y, 100, 50);
       g2d.setTransform(old);
     }
     else {  // Angkot di sisi atas atau sisi bawah
-      g2d.setColor(Color.BLUE);
+      g2d.setColor(Color.YELLOW);
       g2d.fillRect ((int) x, (int) y, 100, 50);
     }
     
