@@ -19,11 +19,15 @@ public class StateContext {
    /**
     * Konstruktor
     */
-  public StateContext() {
-
+  public StateContext(Angkot angkot) {
+    setState(new MoveState(angkot));
   }
 
   public void setState(StateType state) {
-
+    currentState = state;
+  }
+  
+  public void doAction() {
+    currentState.doAction(this);
   }
 }

@@ -18,12 +18,13 @@ import java.util.logging.Logger;
  *
  * @author Devina
  */
-public class Angkot extends JComponent {
+public class Angkot extends JComponent implements Runnable {
   private ArrayList passengers;
   private int capacity;
   private String color;
-  private int x;
-  private int y;
+  private float x;
+  private float y;
+  private StateContext state;
   
   public Angkot() {
     setLayout(null);
@@ -32,31 +33,37 @@ public class Angkot extends JComponent {
     color = "Yellow";
     x = 100;
     y = 120;
+    state = new StateContext(this);
   }
   
-  public Angkot(int _x, int _y) {
+  public Angkot(float _x, float _y) {
     setLayout(null);
     passengers = new ArrayList();
     capacity = 14;
     color = "Yellow";
     x = _x;
     y = _y;
+    state = new StateContext(this);
   }
   
-  public void move(boolean inX, boolean inY, boolean upRight) {
-    if (inX & upRight) {  // angkot di sisi atas
-     x += 50;
-    }
-    else if (inY & upRight) { // angkot di sisi kanan
-      y += 50;
-    }
-    else if (inX & !upRight) {  // angkot di sisi bawah
-      x -= 50;
-    }
-    else if (inY & !upRight) {  // angkot di sisi kiri
-      y -= 50;
-    }
-    repaint();
+  public int getCountPassenger() {
+    return passengers.size();
+  }
+  
+  public float getXPosition() {
+    return x;
+  }
+  
+  public float getYPosition() {
+    return y;
+  }
+  
+  public void setX(float _x) {
+    x = _x;
+  }
+  
+  public void setY(float _y) {
+    y = _y;
   }
   
   public boolean isEmpty() {
@@ -67,10 +74,16 @@ public class Angkot extends JComponent {
     return (passengers.size() == 14);
   }
   
+  public void run() {
+    Passenger passenger = new Passenger();
+    for (int i = 0; i < passenger.getOn(); i++) {
+      passengers.add(passenger);
+    }
+  }
+  
   @Override
   public void paintComponent (Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
-    boolean inX, inY, upRight;
     
     super.paintComponent(g2d);
     if (((x >= 1150) && (y <= 500)) || ((x < 150) && (y > 120))) {
@@ -80,28 +93,12 @@ public class Angkot extends JComponent {
       AffineTransform old = g2d.getTransform();
       g2d.transform(transform);
       g2d.setColor(Color.BLUE);
-      g2d.fillRect (x, y, 100, 50);
+      g2d.fillRect ((int) x, (int) y, 100, 50);
       g2d.setTransform(old);
-      inX = false;
-      inY = true;
-      if ((x >= 1150) && (y <= 500)) {  // Angkot di sisi kanan
-        upRight = true;
-      }
-      else {
-        upRight = false;
-      }
     }
     else {  // Angkot di sisi atas atau sisi bawah
       g2d.setColor(Color.BLUE);
-      g2d.fillRect (x, y, 100, 50);
-      inX = true;
-      inY = false;
-      if ((x >= 150) && (y > 500)) {  // Angkot di sisi bawah
-        upRight = false;
-      }
-      else {
-        upRight = true;
-      }
+      g2d.fillRect ((int) x, (int) y, 100, 50);
     }
     
     try {
@@ -109,6 +106,7 @@ public class Angkot extends JComponent {
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
-    move(inX, inY, upRight);
+    state.doAction();
+    repaint();
   } 
 }

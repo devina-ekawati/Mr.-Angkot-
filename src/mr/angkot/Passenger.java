@@ -5,6 +5,14 @@
  */
 package mr.angkot;
 
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.util.*;
+import javax.swing.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Windows7
@@ -12,7 +20,9 @@ package mr.angkot;
 public class Passenger {
   private boolean available;
   
-  synchronized int getOn(int countPassenger) {
+  public Passenger() {}
+  
+  public synchronized int getOn() {
     while (!available) {
       try {
         wait();
@@ -21,10 +31,10 @@ public class Passenger {
     }
     available = false;
     notify();
-    return countPassenger;
+    return 5;
   }
   
-  synchronized void stay() {
+  public synchronized void stay() {
     while (available) {
       try {
         wait();

@@ -14,11 +14,17 @@
 package mr.angkot;
 
 public class StopAtTerminalState implements StateType {
+  private float x;
+  private float y;
+  private Angkot angkot;
+  
   /**
     * Konstruktor
     */
-  public StopAtTerminalState() {
-
+  public StopAtTerminalState(float _x, float _y, Angkot _angkot) {
+    x = _x;
+    y = _y;
+    angkot = _angkot;
   }
 
    /**
@@ -28,6 +34,6 @@ public class StopAtTerminalState implements StateType {
     */
   @Override
   public void doAction(final StateContext stateContext) {
-    
+    new Thread(angkot).start();
   }
 }
