@@ -86,13 +86,16 @@ public class Angkot extends JComponent implements Runnable {
   public void remove(int index) {
     passengers.remove(index);
   }
+  public void removeAll() {
+    passengers.clear();
+  }
   
   public boolean isEmpty() {
     return passengers.isEmpty();
   }
   
   public boolean isFull() {
-    return (passengers.size() == 14);
+    return (passengers.size() == capacity);
   }
   
   public void run() {
