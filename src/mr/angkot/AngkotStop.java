@@ -15,11 +15,13 @@ package mr.angkot;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import java.lang.reflect.Method;
 
 /** @class AngkotStop
  *  @brief Kelas yang menampung sebuah objek halte yang mengimplementasikan interface StoppingPlace
@@ -127,7 +129,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   public void paintComponent (Graphics graphics) {
     graphics.setFont(new Font("TimesRoman", Font.BOLD, 16));
     graphics.setColor(Color.white);
-    graphics.drawString(passengers.size() + " penumpang", (int) x, (int) y);
+    graphics.drawString(side + passengers.size() + " penumpang", (int) x, (int) y);
     super.paintComponent(graphics);
   }
   
@@ -137,17 +139,53 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
    *  @param angkotEmptySpace Sisa kursi kosong di angkot yang dapat ditempati penumpang
    *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
   */
-  //@Override
-  public void reactOnEvent(int angkotEmptySpace, int countPassengersGetOff) {
+  @Override
+  public void reactOnEvent(Angkot angkot) {
     // Menaikkan penumpang ke angkot
-    int i = 0;
-    while ((!passengers.isEmpty()) && (i<=angkotEmptySpace)) {
-      passengers.remove();
-      i++;
+//    int i = 0;
+//    while ((!passengers.isEmpty()) && (i<=angkotEmptySpace)) {
+//      passengers.remove();
+//      i++;
+//    }
+    try {
+      Class c = angkot.getClass();
+      Method getCountPassengers = c.getMethod("getCountPassengers");
+      Method remove = c.getMethod("remove",null);
+      Random randGetOff = new Random();
+      int countPassengersGetOff = randGetOff.nextInt((int) getCountPassengers.invoke(angkot));
+      for (int i = 0; i < countPassengersGetOff; i++) {
+        remove.invoke(angkot);
+      side = "oke" + countPassengersGetOff + i;
+      }
+      
+      Method getEmptySpace = c.getMethod("getEmptySpace");
+      Method add = c.getMethod("add", Passenger.class);
+      Random randGetOn = new Random();
+      int countPassengersGetOn;
+      if ((int) getEmptySpace.invoke(angkot) < passengers.size()) {
+        countPassengersGetOn = randGetOn.nextInt((int) getEmptySpace.invoke(angkot));
+      }
+      else {
+        countPassengersGetOn = randGetOn.nextInt(passengers.size());
+      }
+      for (int i = 0; i < countPassengersGetOn; i++) {
+        passengers.remove();
+        add.invoke(angkot,new Passenger());
+      }
     }
-    // Menurunkan penumpang dari angkot
-    for (i=0; i<countPassengersGetOff; i++) {
-      //passengers.add()
+    catch (SecurityException | NoSuchMethodException exp) {}
+    catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        Logger.getLogger(AngkotStop.class.getName()).log(Level.SEVERE, null, ex);
     }
+//    // Menurunkan penumpang dari angkot
+//    for (i=0; i<countPassengersGetOff; i++) {
+//      //passengers.add()
+//    }
+    
+
+//    // Menurunkan penumpang dari angkot
+//    for (i=0; i<countPassengersGetOff; i++) {
+//      //passengers.add()
+//    }
   }
 }

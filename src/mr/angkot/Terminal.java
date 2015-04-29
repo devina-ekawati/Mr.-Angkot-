@@ -13,6 +13,8 @@
 package mr.angkot;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -109,18 +111,20 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     Thread producedPassengersThread = new Thread(new Runnable() {
       public void run() {
         while (true) {
-        Random rand = new Random(); 
-        int countPassengers = rand.nextInt(2);
-        for (int i = 0; i < countPassengers; i++) {
-          addPassengers(new Passenger());
+          if (passengers.size() < 14) {
+            Random rand = new Random(); 
+            int countPassengers = rand.nextInt(14) + 14;
+            for (int i = 0; i < countPassengers; i++) {
+              addPassengers(new Passenger());
+            }
+            int delay = rand.nextInt(1000) + 100;
+            try {
+              TimeUnit.MILLISECONDS.sleep(delay);
+            } catch (InterruptedException ex) {
+              Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          }
         }
-        int delay = rand.nextInt(1000) + 100;
-        try {
-          TimeUnit.MILLISECONDS.sleep(delay);
-        } catch (InterruptedException ex) {
-          Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      }
       }
     });
     producedPassengersThread.start();
@@ -141,11 +145,28 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
    *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
    * 
   */
-  //@Override
-  public void reactOnEvent(ArrayList<Passenger> angkotPassengers) {
-    for (Passenger passengerTemp: angkotPassengers) {
-      passengers.add(passengerTemp);
+  @Override
+  public void reactOnEvent(Angkot angkot) {
+    try {
+      Class c = angkot.getClass();
+      Method getCountPassengers = c.getMethod("getCountPassengers",null);
+      Method remove = c.getMethod("remove",null);
+      int countPassengersGetOff = (int) getCountPassengers.invoke(angkot);
+      for (int i = 0; i < countPassengersGetOff; i++) {
+        remove.invoke(angkot);
+      }
+      
+      Method add = c.getMethod("add", Passenger.class);
+      int countPassengersGetOn = 14;
+      for (int i = 0; i < countPassengersGetOn; i++) {
+        passengers.remove();
+        add.invoke(angkot,new Passenger());
+      }
     }
-    angkotPassengers.clear();
+    catch (SecurityException | NoSuchMethodException exp) {
+    side = "oke ";}
+    catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        Logger.getLogger(AngkotStop.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 }

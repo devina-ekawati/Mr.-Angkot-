@@ -35,6 +35,7 @@ public class StopAtTerminalState implements StateType {
     */
   @Override
   public void doAction(final StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces) {
+    stoppingPlaces.get(0).reactOnEvent(angkot);
     try {
       TimeUnit.MILLISECONDS.sleep(2000);
     } catch (InterruptedException ex) {

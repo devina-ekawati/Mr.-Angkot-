@@ -29,26 +29,26 @@ public class Passenger {
   
   public Passenger() {}
   
-  public synchronized int getOn() {
-    while (!available) {
-      try {
-        wait();
-      }
-      catch (InterruptedException exp) {}
-    }
-    available = false;
-    notify();
-    return 5;
-  }
-  
-  public synchronized void stay() {
-    while (available) {
-      try {
-        wait();
-      }
-      catch (InterruptedException exp) {}      
-    }
-    available = true;
-    notify();    
-  }
+//  public synchronized int getOn() {
+//    while (!available) {
+//      try {
+//        wait();
+//      }
+//      catch (InterruptedException exp) {}
+//    }
+//    available = false;
+//    notify();
+//    return 5;
+//  }
+//  
+//  public synchronized void stay() {
+//    while (available) {
+//      try {
+//        wait();
+//      }
+//      catch (InterruptedException exp) {}      
+//    }
+//    available = true;
+//    notify();    
+//  }
 }

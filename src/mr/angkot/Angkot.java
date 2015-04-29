@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author Devina
  */
 public class Angkot extends JComponent implements Runnable {
-  private ArrayList passengers;
+  private ArrayList<Passenger> passengers;
   private int capacity;
   private String color;
   private float x;
@@ -36,7 +36,7 @@ public class Angkot extends JComponent implements Runnable {
   
   public Angkot(ArrayList<StoppingPlace> _stoppingPlaces) {
     setLayout(null);
-    passengers = new ArrayList();
+    passengers = new ArrayList<>();
     capacity = 14;
     color = "Yellow";
     x = 100;
@@ -47,7 +47,7 @@ public class Angkot extends JComponent implements Runnable {
   
   public Angkot(float _x, float _y) {
     setLayout(null);
-    passengers = new ArrayList();
+    passengers = new ArrayList<>();
     capacity = 14;
     color = "Yellow";
     x = _x;
@@ -55,8 +55,12 @@ public class Angkot extends JComponent implements Runnable {
     state = new StateContext(this, stoppingPlaces);
   }
   
-  public int getCountPassenger() {
+  public int getCountPassengers() {
     return passengers.size();
+  }
+  
+  public int getEmptySpace() {
+    return capacity - getCountPassengers();
   }
   
   public float getXPosition() {
@@ -73,6 +77,15 @@ public class Angkot extends JComponent implements Runnable {
   
   public void setY(float _y) {
     y = _y;
+  }
+  
+  public void add(Passenger passenger) {
+    passengers.add(passenger);
+  }
+  
+  public void remove() {
+    Passenger p = new Passenger();
+    passengers.remove(p);
   }
   
   public boolean isEmpty() {
@@ -112,6 +125,7 @@ public class Angkot extends JComponent implements Runnable {
       g2d.setColor(Color.YELLOW);
       g2d.fillRect ((int) x, (int) y, 100, 50);
     }
+    g2d.drawString(passengers.size() + " penumpang",x,y);
     run();
 //    try {
 //      TimeUnit.MILLISECONDS.sleep(100);

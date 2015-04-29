@@ -33,6 +33,15 @@ public class StopAtAngkotStopState implements StateType {
     */
   @Override
   public void doAction(final StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces) {
+    if ((angkot.getXPosition() == 1100) && (angkot.getYPosition() == 120)) {
+      stoppingPlaces.get(1).reactOnEvent(angkot);
+    }
+    else if ((angkot.getXPosition() == 550) && (angkot.getYPosition() == 520)) {
+      stoppingPlaces.get(2).reactOnEvent(angkot);
+    }
+    else if ((angkot.getXPosition() == 100) && (angkot.getYPosition() == 420)) {
+      stoppingPlaces.get(3).reactOnEvent(angkot);
+    }
     try {
       TimeUnit.MILLISECONDS.sleep(2000);
     } catch (InterruptedException ex) {

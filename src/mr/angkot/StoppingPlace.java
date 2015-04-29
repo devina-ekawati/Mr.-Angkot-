@@ -33,5 +33,5 @@ public interface StoppingPlace {
    *  @param angkotEmptySpace Sisa kursi kosong di angkot yang dapat ditempati penumpang
    *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
   */
-  //public int reactOnEvent(int angkotEmptySpace);
+  public void reactOnEvent(Angkot angkot);
 }
