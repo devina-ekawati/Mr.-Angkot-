@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}@author Irene Wiliudarsan	(13513002)
+${licensePrefix}@author Angela Lynn		(13513032)
+${licensePrefix}@author Devina Ekawati	(13513088)
+${licensePrefix}@bug Tidak ada bug ditemukan
+<#if licenseLast??>
+${licenseLast} test
+</#if>

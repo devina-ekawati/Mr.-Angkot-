@@ -1,9 +1,16 @@
 package mr.angkot;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ ************************************************************************
+ *  File ini berisi deklarasi dan implementasi seluruh prototipe 
+ *  kelas Angkot dan seluruh makro, konstanta, 
+ *  ataupun variabel global yang dibutuhkan
+ *
+ *  @author Irene Wiliudarsan (13513002)
+ *  @author Angela Lynn       (13513032)
+ *  @author Devina Ekawati    (13513088)
+ *  @since  April 21st, 2015
+ ************************************************************************
  */
 
 import java.awt.*;

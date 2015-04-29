@@ -5,8 +5,8 @@
  *  variabel global yang dibutuhkan
  *
  *  @author Irene Wiliudarsan (13513002)
- *  @author Angela Lynn           (13513032)
- *  @author Devina Ekawati      (13513088)
+ *  @author Angela Lynn       (13513032)
+ *  @author Devina Ekawati    (13513088)
  *  @since  April 21st, 2015
  ************************************************************************
  */
