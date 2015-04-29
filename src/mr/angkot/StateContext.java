@@ -13,14 +13,15 @@
 
 package mr.angkot;
 
+import java.util.*;
 public class StateContext {
   private StateType currentState;
 
    /**
     * Konstruktor
     */
-  public StateContext(Angkot angkot) {
-    setState(new MoveState(angkot));
+  public StateContext(Angkot angkot, ArrayList<Terminal> listOfTerminal) {
+    currentState = new MoveState(angkot, listOfTerminal);
   }
 
   public void setState(StateType state) {

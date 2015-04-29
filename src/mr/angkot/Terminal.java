@@ -12,7 +12,7 @@
  */
 package mr.angkot;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -37,25 +37,18 @@ public class Terminal extends JComponent implements StoppingPlace {
    */
   public Terminal() {
     name = "Terminal";
-    passengers = new LinkedList<Passenger>();
-    countPassengersLabel = new JLabel (passengers.size() + "penumpang");
-    countPassengersLabel.setOpaque(true);
-    countPassengersLabel.setBackground(Color.red);
-    countPassengersLabel.setBounds((int) x, (int) y, 100, 50);
     x = 20;
     y = 20;
     side = "left";
+    passengers = new LinkedList<Passenger>();
   }
   
   public Terminal (String _name, float _x, float _y) {
     name = _name;
     x = _x;
     y = _y;
+    side = "left";
     passengers = new LinkedList<Passenger>();
-    countPassengersLabel = new JLabel (passengers.size() + "orang");
-    countPassengersLabel.setOpaque(true);
-    countPassengersLabel.setBackground(Color.red);
-    countPassengersLabel.setBounds((int) x, (int) y, 100, 50);
   }
   
   public float getXPosition() {
@@ -89,6 +82,14 @@ public class Terminal extends JComponent implements StoppingPlace {
   @Override
   public boolean isEmpty() {
     return passengers.isEmpty();
+  }
+  
+  @Override
+  public void paintComponent (Graphics graphics) {
+    graphics.setFont(new Font("TimesRoman", Font.BOLD, 16));
+    graphics.setColor(Color.white);
+    graphics.drawString(passengers.size() + " penumpang", (int) x, (int) y);
+    super.paintComponent(graphics);
   }
   
   /** Menurunkan seluruh penumpang saat angkot berhenti di terminal

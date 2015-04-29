@@ -13,13 +13,17 @@
 
 package mr.angkot;
 
+import java.util.*;
+
 public class MoveState implements StateType {
+  private ArrayList<Terminal> listOfTerminal;
   private Angkot angkot;
   
    /**
     * Konstruktor
     */
-  public MoveState(Angkot _angkot) {
+  public MoveState(Angkot _angkot, ArrayList<Terminal> _listOfTerminal) {
+    listOfTerminal = _listOfTerminal;
     angkot = _angkot;
   }
   
@@ -65,7 +69,7 @@ public class MoveState implements StateType {
       angkot.setY(angkot.getYPosition()-50);
     }
     if (angkot.getXPosition() > 200) {
-      stateContext.setState(new StopAtTerminalState(angkot.getXPosition(),angkot.getYPosition(),angkot));
+//      stateContext.setState(new StopAtTerminalState(angkot.getXPosition(),angkot.getYPosition(),angkot));
     }
   }
 }

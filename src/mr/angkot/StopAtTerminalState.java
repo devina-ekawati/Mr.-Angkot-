@@ -14,16 +14,12 @@
 package mr.angkot;
 
 public class StopAtTerminalState implements StateType {
-  private float x;
-  private float y;
   private Angkot angkot;
   
   /**
     * Konstruktor
     */
-  public StopAtTerminalState(float _x, float _y, Angkot _angkot) {
-    x = _x;
-    y = _y;
+  public StopAtTerminalState(Angkot _angkot) {
     angkot = _angkot;
   }
 
