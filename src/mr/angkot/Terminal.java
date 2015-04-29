@@ -111,19 +111,19 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     Thread producedPassengersThread = new Thread(new Runnable() {
       public void run() {
         while (true) {
-          if (passengers.size() < 14) {
+          //if (passengers.size() <= 14) {
             Random rand = new Random(); 
-            int countPassengers = rand.nextInt(14) + 14;
+            int countPassengers = 14;
             for (int i = 0; i < countPassengers; i++) {
               addPassengers(new Passenger());
             }
-            int delay = rand.nextInt(1000) + 100;
+            int delay = rand.nextInt(5000) + 10;
             try {
               TimeUnit.MILLISECONDS.sleep(delay);
             } catch (InterruptedException ex) {
               Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
             }
-          }
+          //}
         }
       }
     });
@@ -135,7 +135,7 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     graphics.setFont(new Font("TimesRoman", Font.BOLD, 16));
     graphics.setColor(Color.white);
     
-    graphics.drawString(passengers.size() + " penumpang", (int) x, (int) y);
+    graphics.drawString(passengers.size() + " penumpang" + " " + side, (int) x, (int) y);
     super.paintComponent(graphics);
   }
   
@@ -149,23 +149,25 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
   public void reactOnEvent(Angkot angkot) {
     try {
       Class c = angkot.getClass();
-      Method getCountPassengers = c.getMethod("getCountPassengers",null);
-      Method remove = c.getMethod("remove",null);
+      Method getCountPassengers = c.getMethod("getCountPassengers");
+      Method removeAll = c.getMethod("removeAll");
+      // Penumpang turun ke terminal
       int countPassengersGetOff = (int) getCountPassengers.invoke(angkot);
-      for (int i = 0; i < countPassengersGetOff; i++) {
-        remove.invoke(angkot);
-      }
+      removeAll.invoke(angkot);
       
       Method add = c.getMethod("add", Passenger.class);
+      Method isFull = c.getMethod("isFull");
+      // Penumpang naik ke angkot
       int countPassengersGetOn = 14;
-      for (int i = 0; i < countPassengersGetOn; i++) {
-        passengers.remove();
-        add.invoke(angkot,new Passenger());
+      if ((boolean) isFull.invoke(angkot)) {
+      } else {
+        for (int i = 0; i < countPassengersGetOn; i++) {
+          add.invoke(angkot, passengers.element());
+          passengers.remove();
+        }
       }
-    }
-    catch (SecurityException | NoSuchMethodException exp) {
-    side = "oke ";}
-    catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+    } catch (SecurityException | NoSuchMethodException exp) {
+    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         Logger.getLogger(AngkotStop.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
