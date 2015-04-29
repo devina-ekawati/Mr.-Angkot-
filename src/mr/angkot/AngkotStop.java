@@ -150,7 +150,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     try {
       Class c = angkot.getClass();
       Method getCountPassengers = c.getMethod("getCountPassengers");
-      Method remove = c.getMethod("remove",Integer.TYPE);
+      Method clear = c.getMethod("clear",Integer.TYPE);
       Random randGetOff = new Random();
       int countPassengersGetOff;
       if ((int) getCountPassengers.invoke(angkot) != 0) {
@@ -160,14 +160,14 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
         countPassengersGetOff = 0;
       }
       for (int i = 0; i < countPassengersGetOff; i++) {
-        remove.invoke(angkot,(int) getCountPassengers.invoke(angkot) - 1);
+        clear.invoke(angkot,(int) getCountPassengers.invoke(angkot) - 1);
       }
       
       Method getEmptySpace = c.getMethod("getEmptySpace");
       Method add = c.getMethod("add", Passenger.class);
       Random randGetOn = new Random();
       int countPassengersGetOn;
-      if (((int) getEmptySpace.invoke(angkot) != 0) && (passengers.size() != 0)) {
+      if (((int) getEmptySpace.invoke(angkot) > 0) && (passengers.size() > 0)) {
         if ((int) getEmptySpace.invoke(angkot) < passengers.size()) {
           countPassengersGetOn = randGetOn.nextInt((int) getEmptySpace.invoke(angkot));
         }

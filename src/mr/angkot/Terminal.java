@@ -137,6 +137,8 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     
     graphics.drawString(passengers.size() + " penumpang" + " " + side, (int) x, (int) y);
     super.paintComponent(graphics);
+    graphics.drawString("test",0,0);
+    super.paintComponent(graphics);
   }
   
   /** Menurunkan seluruh penumpang saat angkot berhenti di terminal
@@ -150,10 +152,10 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     try {
       Class c = angkot.getClass();
       Method getCountPassengers = c.getMethod("getCountPassengers");
-      Method removeAll = c.getMethod("removeAll");
+      Method clearAll = c.getMethod("clearAll");
       // Penumpang turun ke terminal
       int countPassengersGetOff = (int) getCountPassengers.invoke(angkot);
-      removeAll.invoke(angkot);
+      clearAll.invoke(angkot);
       
       Method add = c.getMethod("add", Passenger.class);
       Method isFull = c.getMethod("isFull");
