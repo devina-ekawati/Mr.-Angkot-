@@ -29,7 +29,7 @@ public class StateContext {
     currentState = state;
   }
   
-  public void doAction() {
-    currentState.doAction(this);
+  public void doAction(ArrayList<StoppingPlace> stoppingPlaces) {
+    currentState.doAction(this, stoppingPlaces);
   }
 }

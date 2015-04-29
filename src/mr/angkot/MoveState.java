@@ -17,14 +17,12 @@ import java.util.*;
 import java.lang.reflect.Method;
 
 public class MoveState implements StateType {
-  private ArrayList<StoppingPlace> stoppingPlaces;
   private Angkot angkot;
   
    /**
     * Konstruktor
     */
-  public MoveState(Angkot _angkot, ArrayList<StoppingPlace> _stoppingPlaces) {
-    stoppingPlaces = _stoppingPlaces;
+  public MoveState(Angkot _angkot, ArrayList<StoppingPlace> stoppingPlaces) {
     angkot = _angkot;
   }
   
@@ -34,7 +32,7 @@ public class MoveState implements StateType {
     * @param stateContext Konteks state
     */
   @Override
-  public void doAction(final StateContext stateContext) {
+  public void doAction(final StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces) {
     boolean inX, inY, upRight;
     if (((angkot.getXPosition() >= 1150) && (angkot.getYPosition() <= 500)) || ((angkot.getXPosition() < 150) && (angkot.getYPosition() > 120))) {
       inX = false;
@@ -69,8 +67,31 @@ public class MoveState implements StateType {
     else if (inY && !upRight) {  // angkot di sisi kiri
       angkot.setY(angkot.getYPosition()-50);
     }
-    if (angkot.getXPosition() > 200) {
-//      stateContext.setState(new StopAtTerminalState(angkot.getXPosition(),angkot.getYPosition(),angkot));
+    int i = 0;
+    boolean found = false;
+    StoppingPlace place = stoppingPlaces.get(i);
+    while (!found && i<stoppingPlaces.size()) {
+      place = stoppingPlaces.get(i);
+      float distanceX = (angkot.getXPosition()-place.getXPosition())*(angkot.getXPosition()-place.getXPosition());
+      float distanceY = (angkot.getYPosition()-place.getYPosition())*(angkot.getYPosition()-place.getYPosition());
+      float distance = (float) Math.sqrt(distanceX + distanceY);
+      if (distance < 200) {
+        found = true;
+      } else {
+        i++;
+        
+      }
     }
+    if (found) {
+      if (place.getName().contains("Terminal")) {
+        stateContext.setState(new StopAtTerminalState(angkot));
+      } else {
+        stateContext.setState(new StopAtAngkotStopState(angkot));
+      }
+      found = false;
+    }
+    //if (angkot.getXPosition() > 200) {
+//      stateContext.setState(new StopAtTerminalState(angkot.getXPosition(),angkot.getYPosition(),angkot));
+    //}
   }
 }

@@ -33,21 +33,21 @@ public class MrAngkot extends JFrame {
     JLayeredPane lp = getLayeredPane();
     
     // Background
-//    try {
-//        this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("img/bg.png")))));
-//    } catch (IOException e) {
-//    };
+    try {
+        this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("img/bg.png")))));
+    } catch (IOException e) {
+    };
 //    Background background = new Background();
 //    background.setBounds(0,0,1366,730);
 //    lp.add(background,new Integer(0));    
 
-    Terminal terminal1 = new Terminal("Ganesha", 116, 50);
+    Terminal terminal1 = new Terminal("Terminal Ganesha", 116, 50);
     terminal1.setBounds(20, 20, 1366, 730);
-    AngkotStop angkotStop1 = new AngkotStop("Cimedan", 1091, 50);
+    AngkotStop angkotStop1 = new AngkotStop("Halte Cimedan", 1091, 50);
     angkotStop1.setBounds(20, 20, 1366, 730);
-    AngkotStop angkotStop2 = new AngkotStop("Citangerang", 595, 650);
+    AngkotStop angkotStop2 = new AngkotStop("Halte Citangerang", 595, 650);
     angkotStop2.setBounds(20, 20, 1366, 730);
-    AngkotStop angkotStop3 = new AngkotStop("Cibandung", 20, 100);
+    AngkotStop angkotStop3 = new AngkotStop("Halte Cibandung", 0, 460);
     angkotStop3.setBounds(20, 20, 1366, 730);
     
     ArrayList<StoppingPlace> stoppingPlaces = new ArrayList<StoppingPlace>();
@@ -64,7 +64,7 @@ public class MrAngkot extends JFrame {
     lp.add(terminal1, new Integer(2));
     lp.add(angkotStop1, new Integer(2));
     lp.add(angkotStop2, new Integer(2));
-    lp.add(angkotStop2, new Integer(2));
+    lp.add(angkotStop3, new Integer(2));
     lp.setVisible(true);
   }
   

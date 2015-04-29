@@ -13,12 +13,17 @@
 
 package mr.angkot;
 
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class StopAtAngkotStopState implements StateType {
+  private Angkot angkot;
   /**
     * Konstruktor
     */
-  public StopAtAngkotStopState() {
-
+  public StopAtAngkotStopState(Angkot _angkot) {
+    angkot = _angkot;
   }
 
     /**
@@ -27,7 +32,12 @@ public class StopAtAngkotStopState implements StateType {
     * @param stateContext Konteks state
     */
   @Override
-  public void doAction(final StateContext stateContext) {
-    
+  public void doAction(final StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces) {
+    try {
+      TimeUnit.MILLISECONDS.sleep(2000);
+    } catch (InterruptedException ex) {
+      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    stateContext.setState(new MoveState(angkot, stoppingPlaces));
   }
 }

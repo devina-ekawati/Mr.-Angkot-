@@ -13,11 +13,13 @@
 
 package mr.angkot;
 
+import java.util.*;
+
 public interface StateType {
    /**
     * Interface untuk melakukan aksi tertentu sesuai dengan state
     * 
     * @param stateContext Konteks state
     */
-   void doAction(StateContext stateContext);
+   void doAction(StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces);
 }

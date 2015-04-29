@@ -17,6 +17,16 @@ package mr.angkot;
  */
 public interface StoppingPlace {
   // Method
+  public String getName();
+  public float getXPosition();
+  public float getYPosition();
+  public String getCountPassengers();
+  public void setName(String _name);
+  public void setXPosition(float _x);
+  public void setYPosition(float _y);
+  public void addPassengers(Passenger _passenger);
+  public void removePassengers();
+  
   public boolean isEmpty();
   
   /** Menghasilkan reaksi terhadap event yang terjadi

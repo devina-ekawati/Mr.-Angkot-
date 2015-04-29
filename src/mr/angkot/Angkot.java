@@ -105,13 +105,13 @@ public class Angkot extends JComponent {
     }
     
     try {
-      TimeUnit.MILLISECONDS.sleep(500);
+      TimeUnit.MILLISECONDS.sleep(100);
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
     Thread moveThread = new Thread(new Runnable() {
       public void run() {
-        state.doAction();
+        state.doAction(stoppingPlaces);
       }
     });
     moveThread.start();

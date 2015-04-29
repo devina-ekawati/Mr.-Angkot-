@@ -51,29 +51,47 @@ public class Terminal extends JComponent implements StoppingPlace {
     passengers = new LinkedList<Passenger>();
   }
   
+  @Override
+  public String getName() {
+    return name;
+  }
+  
+  @Override
   public float getXPosition() {
     return x;
   }
   
+  @Override
   public float getYPosition() {
     return y;
   }
   
+  @Override
   public String getCountPassengers() {
     return passengers.size() + " penumpang";
   }
   
+  @Override
+  public void setName(String _name) {
+    name = _name;
+  }
+  
+  @Override
   public void setXPosition(float _x) {
     x = _x;
   }
   
+  @Override
   public void setYPosition(float _y) {
     y = _y;
   }
+  
+  @Override
   public void addPassengers(Passenger _passenger) {
     passengers.add(_passenger);
   }
   
+  @Override
   public void removePassengers() {
     passengers.remove();
   }
