@@ -25,22 +25,24 @@ import java.util.logging.Logger;
  *
  * @author Devina
  */
-public class Angkot extends JComponent implements Runnable {
+public class Angkot extends JComponent {
   private ArrayList passengers;
   private int capacity;
   private String color;
   private float x;
   private float y;
   private StateContext state;
+  private ArrayList<StoppingPlace> stoppingPlaces;
   
-  public Angkot() {
+  public Angkot(ArrayList<StoppingPlace> _stoppingPlaces) {
     setLayout(null);
     passengers = new ArrayList();
     capacity = 14;
     color = "Yellow";
     x = 100;
     y = 120;
-    state = new StateContext(this);
+    stoppingPlaces = _stoppingPlaces;
+    state = new StateContext(this, stoppingPlaces);
   }
   
   public Angkot(float _x, float _y) {
@@ -50,7 +52,7 @@ public class Angkot extends JComponent implements Runnable {
     color = "Yellow";
     x = _x;
     y = _y;
-    state = new StateContext(this);
+    state = new StateContext(this, stoppingPlaces);
   }
   
   public int getCountPassenger() {
@@ -81,12 +83,6 @@ public class Angkot extends JComponent implements Runnable {
     return (passengers.size() == 14);
   }
   
-  public void run() {
-    Passenger passenger = new Passenger();
-    for (int i = 0; i < passenger.getOn(); i++) {
-      passengers.add(passenger);
-    }
-  }
   
   @Override
   public void paintComponent (Graphics g) {
@@ -113,7 +109,13 @@ public class Angkot extends JComponent implements Runnable {
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
-    state.doAction();
+    Thread moveThread = new Thread(new Runnable() {
+      public void run() {
+        state.doAction();
+      }
+    });
+    moveThread.start();
+    
     repaint();
   } 
 }

@@ -30,6 +30,6 @@ public class StopAtTerminalState implements StateType {
     */
   @Override
   public void doAction(final StateContext stateContext) {
-    new Thread(angkot).start();
+    
   }
 }

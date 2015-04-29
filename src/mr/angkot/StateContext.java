@@ -16,12 +16,13 @@ package mr.angkot;
 import java.util.*;
 public class StateContext {
   private StateType currentState;
-
+  private ArrayList<StoppingPlace> stoppingPlaces;
    /**
     * Konstruktor
     */
-  public StateContext(Angkot angkot, ArrayList<Terminal> listOfTerminal) {
-    currentState = new MoveState(angkot, listOfTerminal);
+  public StateContext(Angkot angkot, ArrayList<StoppingPlace> _stoppingPlaces) {
+    stoppingPlaces = _stoppingPlaces;
+    currentState = new MoveState(angkot, stoppingPlaces);
   }
 
   public void setState(StateType state) {

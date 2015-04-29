@@ -14,16 +14,17 @@
 package mr.angkot;
 
 import java.util.*;
+import java.lang.reflect.Method;
 
 public class MoveState implements StateType {
-  private ArrayList<Terminal> listOfTerminal;
+  private ArrayList<StoppingPlace> stoppingPlaces;
   private Angkot angkot;
   
    /**
     * Konstruktor
     */
-  public MoveState(Angkot _angkot, ArrayList<Terminal> _listOfTerminal) {
-    listOfTerminal = _listOfTerminal;
+  public MoveState(Angkot _angkot, ArrayList<StoppingPlace> _stoppingPlaces) {
+    stoppingPlaces = _stoppingPlaces;
     angkot = _angkot;
   }
   
