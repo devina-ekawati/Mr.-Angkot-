@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author Devina
  */
-public class Angkot extends JComponent {
+public class Angkot extends JComponent implements Runnable {
   private ArrayList passengers;
   private int capacity;
   private String color;
@@ -83,6 +83,15 @@ public class Angkot extends JComponent {
     return (passengers.size() == 14);
   }
   
+  public void run() {
+    try {
+      TimeUnit.MILLISECONDS.sleep(100);
+    } catch (InterruptedException ex) {
+      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    state.doAction(stoppingPlaces);
+    repaint();
+  }
   
   @Override
   public void paintComponent (Graphics g) {
@@ -103,20 +112,19 @@ public class Angkot extends JComponent {
       g2d.setColor(Color.YELLOW);
       g2d.fillRect ((int) x, (int) y, 100, 50);
     }
-    
-    try {
-      TimeUnit.MILLISECONDS.sleep(100);
-    } catch (InterruptedException ex) {
-      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    Thread moveThread = new Thread(new Runnable() {
-      public void run() {
-        state.doAction(stoppingPlaces);
-      }
-    });
-    //moveThread.start();
-    moveThread.run();
+    run();
+//    try {
+//      TimeUnit.MILLISECONDS.sleep(100);
+//    } catch (InterruptedException ex) {
+//      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//    Thread moveThread = new Thread(new Runnable() {
+//      public void run() {
+//        state.doAction(stoppingPlaces);
+//      }
+//    });
+//    moveThread.run();
     //state.doAction(stoppingPlaces);
-    repaint();
+    //repaint();
   } 
 }

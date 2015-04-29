@@ -14,12 +14,15 @@ package mr.angkot;
 
 import java.awt.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /** @class Terminal
  *  @brief Kelas yang menampung sebuah objek terminal yang mengimplementasikan interface StoppingPlace
  */
-public class Terminal extends JComponent implements StoppingPlace {
+public class Terminal extends JComponent implements StoppingPlace, Runnable {
   // Atribut
   private String name; //< Nama terminal
   private JLabel countPassengersLabel;
@@ -102,10 +105,32 @@ public class Terminal extends JComponent implements StoppingPlace {
     return passengers.isEmpty();
   }
   
+  public void run() {
+    Thread producedPassengersThread = new Thread(new Runnable() {
+      public void run() {
+        while (true) {
+        Random rand = new Random(); 
+        int countPassengers = rand.nextInt(2);
+        for (int i = 0; i < countPassengers; i++) {
+          addPassengers(new Passenger());
+        }
+        int delay = rand.nextInt(1000) + 100;
+        try {
+          TimeUnit.MILLISECONDS.sleep(delay);
+        } catch (InterruptedException ex) {
+          Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+      }
+    });
+    producedPassengersThread.start();
+  }
+  
   @Override
   public void paintComponent (Graphics graphics) {
     graphics.setFont(new Font("TimesRoman", Font.BOLD, 16));
     graphics.setColor(Color.white);
+    
     graphics.drawString(passengers.size() + " penumpang", (int) x, (int) y);
     super.paintComponent(graphics);
   }

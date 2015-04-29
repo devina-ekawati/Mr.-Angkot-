@@ -58,14 +58,20 @@ public class MrAngkot extends JFrame {
     
     Angkot a1 = new Angkot(stoppingPlaces);
     a1.setBounds(0, 0, 1366, 730);
+    
     // Place the buttons in different layers
     lp.add(a1, new Integer(1));
-    
+    new Thread(a1).start();
     lp.add(terminal1, new Integer(2));
+    new Thread(terminal1).start();
     lp.add(angkotStop1, new Integer(2));
+    new Thread(angkotStop1).start();
     lp.add(angkotStop2, new Integer(2));
+    new Thread(angkotStop2).start();
     lp.add(angkotStop3, new Integer(2));
+    new Thread(angkotStop3).start();
     lp.setVisible(true);
+    
   }
   
   /**

@@ -16,12 +16,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /** @class AngkotStop
  *  @brief Kelas yang menampung sebuah objek halte yang mengimplementasikan interface StoppingPlace
  */
-public class AngkotStop extends JComponent implements StoppingPlace {
+public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   // Atribut
   private String name; //< Nama halte
   private JLabel countPassengersLabel;
@@ -97,6 +100,27 @@ public class AngkotStop extends JComponent implements StoppingPlace {
   @Override
   public boolean isEmpty() {
     return passengers.isEmpty();
+  }
+  
+  public void run() {
+    Thread producedPassengersThread = new Thread(new Runnable() {
+      public void run() {
+        while (true) {
+        Random rand = new Random(); 
+        int countPassengers = rand.nextInt(2);
+        for (int i = 0; i < countPassengers; i++) {
+          addPassengers(new Passenger());
+        }
+        int delay = rand.nextInt(1000) + 100;
+        try {
+          TimeUnit.MILLISECONDS.sleep(delay);
+        } catch (InterruptedException ex) {
+          Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+      }
+    });
+    producedPassengersThread.start();
   }
   
   @Override
