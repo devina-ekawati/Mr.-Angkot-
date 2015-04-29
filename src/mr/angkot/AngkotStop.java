@@ -129,7 +129,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   public void paintComponent (Graphics graphics) {
     graphics.setFont(new Font("TimesRoman", Font.BOLD, 16));
     graphics.setColor(Color.white);
-    graphics.drawString(side + passengers.size() + " penumpang", (int) x, (int) y);
+    graphics.drawString(passengers.size() + " penumpang", (int) x, (int) y);
     super.paintComponent(graphics);
   }
   
@@ -150,23 +150,33 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     try {
       Class c = angkot.getClass();
       Method getCountPassengers = c.getMethod("getCountPassengers");
-      Method remove = c.getMethod("remove",null);
+      Method remove = c.getMethod("remove",Integer.TYPE);
       Random randGetOff = new Random();
-      int countPassengersGetOff = randGetOff.nextInt((int) getCountPassengers.invoke(angkot));
+      int countPassengersGetOff;
+      if ((int) getCountPassengers.invoke(angkot) != 0) {
+        countPassengersGetOff = randGetOff.nextInt((int) getCountPassengers.invoke(angkot));
+      }
+      else {
+        countPassengersGetOff = 0;
+      }
       for (int i = 0; i < countPassengersGetOff; i++) {
-        remove.invoke(angkot);
-      side = "oke" + countPassengersGetOff + i;
+        remove.invoke(angkot,(int) getCountPassengers.invoke(angkot) - 1);
       }
       
       Method getEmptySpace = c.getMethod("getEmptySpace");
       Method add = c.getMethod("add", Passenger.class);
       Random randGetOn = new Random();
       int countPassengersGetOn;
-      if ((int) getEmptySpace.invoke(angkot) < passengers.size()) {
-        countPassengersGetOn = randGetOn.nextInt((int) getEmptySpace.invoke(angkot));
+      if (((int) getEmptySpace.invoke(angkot) != 0) && (passengers.size() != 0)) {
+        if ((int) getEmptySpace.invoke(angkot) < passengers.size()) {
+          countPassengersGetOn = randGetOn.nextInt((int) getEmptySpace.invoke(angkot));
+        }
+        else {
+          countPassengersGetOn = randGetOn.nextInt(passengers.size());
+        }
       }
       else {
-        countPassengersGetOn = randGetOn.nextInt(passengers.size());
+        countPassengersGetOn = 0;
       }
       for (int i = 0; i < countPassengersGetOn; i++) {
         passengers.remove();
