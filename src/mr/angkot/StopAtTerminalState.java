@@ -40,6 +40,6 @@ public class StopAtTerminalState implements StateType {
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
-    stateContext.setState(new MoveState(angkot, stoppingPlaces));
+    stateContext.setState(new MoveState(angkot));
   }
 }

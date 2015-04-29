@@ -22,7 +22,7 @@ public class StateContext {
     */
   public StateContext(Angkot angkot, ArrayList<StoppingPlace> _stoppingPlaces) {
     stoppingPlaces = _stoppingPlaces;
-    currentState = new MoveState(angkot, stoppingPlaces);
+    currentState = new StopAtTerminalState(angkot);
   }
 
   public void setState(StateType state) {

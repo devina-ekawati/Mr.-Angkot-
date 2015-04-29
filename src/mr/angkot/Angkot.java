@@ -114,8 +114,9 @@ public class Angkot extends JComponent {
         state.doAction(stoppingPlaces);
       }
     });
-    moveThread.start();
-    
+    //moveThread.start();
+    moveThread.run();
+    //state.doAction(stoppingPlaces);
     repaint();
   } 
 }
