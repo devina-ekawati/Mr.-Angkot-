@@ -24,11 +24,16 @@ public class StateContext {
     stoppingPlaces = _stoppingPlaces;
     currentState = new MoveState(angkot);
   }
-
+  /**
+    * Setter menjadi state tertentu
+    */
   public void setState(StateType state) {
     currentState = state;
   }
   
+  /**
+    * Melakukan aksi terhadap state tertentu
+    */
   public void doAction(ArrayList<StoppingPlace> stoppingPlaces) {
     currentState.doAction(this, stoppingPlaces);
   }

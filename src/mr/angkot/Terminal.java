@@ -48,6 +48,10 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
   
+  /** Konstruktor dengan parameter
+   *
+   *  
+   */
   public Terminal (String _name, float _x, float _y) {
     name = _name;
     x = _x;
@@ -56,46 +60,73 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
   
+  /** 
+   * Getter nama halte
+  */
   @Override
   public String getName() {
     return name;
   }
   
+  /** 
+   * Getter posisi x halte
+  */
   @Override
   public float getXPosition() {
     return x;
   }
   
+  /** 
+   * Getter posisi y halte
+  */
   @Override
   public float getYPosition() {
     return y;
   }
   
+  /** 
+   * Getter jumlah passengers di halte
+  */
   @Override
   public String getCountPassengers() {
     return passengers.size() + " penumpang";
   }
   
+  /** 
+   * Setter nama halte
+  */
   @Override
   public void setName(String _name) {
     name = _name;
   }
   
+  /** 
+   * Setter posisi x halte
+  */
   @Override
   public void setXPosition(float _x) {
     x = _x;
   }
   
+  /** 
+   * Setter posisi y halte
+  */
   @Override
   public void setYPosition(float _y) {
     y = _y;
   }
   
+  /** 
+   * Menambah Passsengers di dalam halte
+  */
   @Override
   public void addPassengers(Passenger _passenger) {
     passengers.add(_passenger);
   }
   
+  /** 
+   * Mengurangi Passsengers di dalam halte
+  */
   @Override
   public void removePassengers() {
     passengers.remove();

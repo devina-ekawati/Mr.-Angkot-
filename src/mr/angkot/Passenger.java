@@ -20,35 +20,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Windows7
- */
 public class Passenger {
-  private boolean available;
-  
+  /** 
+   * Konstruktor
+  */
   public Passenger() {}
   
-//  public synchronized int getOn() {
-//    while (!available) {
-//      try {
-//        wait();
-//      }
-//      catch (InterruptedException exp) {}
-//    }
-//    available = false;
-//    notify();
-//    return 5;
-//  }
-//  
-//  public synchronized void stay() {
-//    while (available) {
-//      try {
-//        wait();
-//      }
-//      catch (InterruptedException exp) {}      
-//    }
-//    available = true;
-//    notify();    
-//  }
 }
