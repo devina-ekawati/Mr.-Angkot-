@@ -167,10 +167,7 @@ public class AngkotStopTest {
     System.out.println("reactOnEvent");
     Angkot angkot = new Angkot(new ArrayList<StoppingPlace>());
     AngkotStop instance = new AngkotStop();
-    try {
-      instance.reactOnEvent(angkot);
-    }
-    catch (NoSuchElementException exp) {}
+    instance.reactOnEvent(angkot);
   }
 
   /**

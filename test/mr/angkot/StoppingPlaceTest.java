@@ -165,11 +165,8 @@ public class StoppingPlaceTest {
   public void testReactOnEvent() {
     System.out.println("reactOnEvent");
     Angkot angkot = new Angkot(new ArrayList<StoppingPlace>());
-    StoppingPlace instance = new Terminal();
-    try {
-      instance.reactOnEvent(angkot);
-    }
-    catch (NoSuchElementException exp) {}
+    StoppingPlace instance = new AngkotStop();
+    instance.reactOnEvent(angkot);
   }
 
   public class StoppingPlaceImpl implements StoppingPlace {

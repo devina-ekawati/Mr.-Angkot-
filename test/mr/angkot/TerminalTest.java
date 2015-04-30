@@ -167,10 +167,10 @@ public class TerminalTest {
     System.out.println("reactOnEvent");
     Angkot angkot = new Angkot(new ArrayList<StoppingPlace>());
     Terminal instance = new Terminal();
-    try {
-      instance.reactOnEvent(angkot);
+    for (int i = 0; i < 14; i++) {
+      instance.addPassengers(new Passenger());
     }
-    catch (NoSuchElementException exp) {}
+    instance.reactOnEvent(angkot);
   }
 
   /**

@@ -142,7 +142,7 @@ public class Angkot extends JComponent implements Runnable {
   @Override
   public void run() {
     try {
-      TimeUnit.MILLISECONDS.sleep(100);
+      TimeUnit.MILLISECONDS.sleep(500);
     } catch (InterruptedException ex) {
       Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
     }
