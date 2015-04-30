@@ -36,7 +36,9 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   private Queue<Passenger> passengers; //< Menampung penumpang yang ingin menaiki angkot
 
   // Method
-  // Konstruktor
+  /** 
+   * Konstruktor
+  */
   public AngkotStop() {
     name = "Halte";
     x = 0;
@@ -44,7 +46,6 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     side = "left";
     passengers = new LinkedList<Passenger>();
   }
-  
   public AngkotStop(String _name, float _x, float _y) {
     name = _name;
     x = _x;
