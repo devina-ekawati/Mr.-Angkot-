@@ -35,6 +35,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Konstruktor dengan parameter
+  * Menciptakan objek angkot dengan nilai capacity = 14, x = 100, y = 120
+  * @param _stoppingPlaces merupakan list dari seluruh tempat pemberhentian
   */
   public Angkot(ArrayList<StoppingPlace> _stoppingPlaces) {
     setLayout(null);
@@ -48,6 +50,9 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Konstruktor dengan parameter
+  * Menciptakan objek angkot dengan nilai capacity = 14, rray list passengers dan stoppingPlaces kosong
+  * @param _x merupakan posisi koordinat x angkot
+  * @param _y merupakan posisi koordinat y angkot
   */
   public Angkot(float _x, float _y) {
     setLayout(null);
@@ -61,6 +66,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Getter jumlah passengers
+  * Memperoleh jumlah passengers di dalam angkot
+  * @return jumlah passengers di dalam angkot
   */
   public int getCountPassengers() {
     return passengers.size();
@@ -68,6 +75,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Getter jumlah tempat kosong di dalam angkot
+  * Memperoleh jumlah tempat yang masih tersisa di dalam angkot
+  * @return jumlah tempat yang tersisa di dalam angkot
   */
   public int getEmptySpace() {
     return capacity - getCountPassengers();
@@ -75,6 +84,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Getter posisi x angkot
+  * Memperoleh posisi koordinat x angkot
+  * @return posisi koordinat x angkot
   */
   public float getXPosition() {
     return x;
@@ -82,6 +93,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Getter posisi y angkot
+  * Memperoleh posisi koordinat y angkot
+  * @return posisi koordinat y angkot
   */
   public float getYPosition() {
     return y;
@@ -89,6 +102,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Setter posisi x angkot
+  * Mengganti nilai x angkot dengan _x
+  * @param _x merupakan posisi yang akan menggantikan posisi x angkot sekarang
   */
   public void setX(float _x) {
     x = _x;
@@ -96,6 +111,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Setter posisi y angkot
+  * Mengganti nilai y angkot dengan _x
+  * @param _y merupakan posisi yang akan menggantikan posisi y angkot sekarang
   */
   public void setY(float _y) {
     y = _y;
@@ -103,6 +120,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Menambah jumlah penumpang ke dalam angkot
+  * Menambah passnger ke dalam angkot ke dalam array list passengers
+  * @param passenger passenger yang ditambahkan ke dalam angkot
   */
   public void add(Passenger passenger) {
     passengers.add(passenger);
@@ -110,6 +129,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Mengurangi jumlah penumpang dari dalam angkot
+  * Menghapus passenger pada index tertentu dalam array list
+  * @param index merupakan index array list
   */
   public void clear(int index) {
     passengers.remove(index);
@@ -117,6 +138,7 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Mengurangi jumlah seluruh penumpang dari dalam angkot
+  * Menghapus seluruh passenger dari array list passengers
   */
   public void clearAll() {
     passengers.clear();
@@ -124,6 +146,8 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Mengecek apaakah angkot masih kosong atau tidak
+  * Angkot kosong jika array list passengers kosong
+  * @return true jika angkot kosong dan false jika tidak
   */
   public boolean isEmpty() {
     return passengers.isEmpty();
@@ -131,14 +155,13 @@ public class Angkot extends JComponent implements Runnable {
   
   /**
   * Mengecek apaakah angkot sudah penuh atau tidak
+  * Angkot penuh jika ukuran array list sama dengan kapasitas angkot
+  * @return true jika angkot penuh dan false jika tidak 
   */
   public boolean isFull() {
     return (passengers.size() == capacity);
   }
   
-  /**
-  * Override dari runnable untuk menjalankan thread
-  */
   @Override
   public void run() {
     try {
@@ -149,10 +172,7 @@ public class Angkot extends JComponent implements Runnable {
     state.doAction(stoppingPlaces);
     repaint();
   }
-  
-  /**
-  * Override dari JComponent untuk menampilkan objek ke layar
-  */
+
   @Override
   public void paintComponent (Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
