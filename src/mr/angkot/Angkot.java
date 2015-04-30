@@ -26,19 +26,19 @@ import java.util.logging.Logger;
  * @author Devina
  */
 public class Angkot extends JComponent implements Runnable {
+  // Atribut
+  private ArrayList<StoppingPlace> stoppingPlaces;
   private ArrayList<Passenger> passengers;
   private int capacity;
-  private String color;
   private float x;
   private float y;
   private StateContext state;
-  private ArrayList<StoppingPlace> stoppingPlaces;
   
+  // Method
   public Angkot(ArrayList<StoppingPlace> _stoppingPlaces) {
     setLayout(null);
     passengers = new ArrayList<>();
     capacity = 14;
-    color = "Yellow";
     x = 100;
     y = 120;
     stoppingPlaces = _stoppingPlaces;
@@ -49,7 +49,6 @@ public class Angkot extends JComponent implements Runnable {
     setLayout(null);
     passengers = new ArrayList<>();
     capacity = 14;
-    color = "Yellow";
     x = _x;
     y = _y;
     state = new StateContext(this, stoppingPlaces);
