@@ -14,25 +14,33 @@
 package mr.angkot;
 
 import java.util.*;
-import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+/** @class MoveState
+ *  Kelas yang menampung sebuah status saat angkot bergerak. 
+ *  Kelas ini mengimplemantasikan kelas interface StateType
+ */
 public class MoveState implements StateType {
-  private Angkot angkot;
+  // Atribut
+  private Angkot angkot; //< Angkot yang berada dalam status bergerak
   
-   /**
-    * Konstruktor
+   /**Konstruktor dengan parameter
+    *   
+    * Menghidupkan status MoveState dengan parameter angkot yang berasal
+    * dari masukkan pengguna
     */
   public MoveState(Angkot _angkot) {
     angkot = _angkot;
   }
   
-   /**
-    * Melakukan aksi tertentu saat angkot sedang bergerak
+   /**Melakukan aksi tertentu saat angkot sedang bergerak
+    * 
+    * Angkot bergerak dengan arah gerakan sesuai dengan letak angkot.
+    * Apabila angkot bertemu dangan sebuah terminal, angkot akan berpindah ke 
+    * status StopAtTerminalState. Apabila angkot bertemu dengan sebuah halte,
+    * angkot akan berpindah ke status StopAtAngkotStopState
     * 
     * @param stateContext Konteks state
+    * @param stoppingPlaces Array yang menampung seluruh tempat pemberhentian yang ada
     */
   @Override
   public void doAction(final StateContext stateContext, ArrayList<StoppingPlace> stoppingPlaces) {
@@ -58,44 +66,18 @@ public class MoveState implements StateType {
       }
     }
     
-    if (inX && upRight) {  // angkot di sisi atas
+    if (inX && upRight) {  // Angkot di sisi atas
       angkot.setX(angkot.getXPosition()+50);
     }
-    else if (inY && upRight) { // angkot di sisi kanan
+    else if (inY && upRight) { // Angkot di sisi kanan
       angkot.setY(angkot.getYPosition()+50);
     }
-    else if (inX && !upRight) {  // angkot di sisi bawah
+    else if (inX && !upRight) {  // Angkot di sisi bawah
       angkot.setX(angkot.getXPosition()-50);
     }
-    else if (inY && !upRight) {  // angkot di sisi kiri
+    else if (inY && !upRight) {  // Angkot di sisi kiri
       angkot.setY(angkot.getYPosition()-50);
     }
-//    int i = 0;
-//    boolean found = false;
-//    StoppingPlace place = stoppingPlaces.get(i);
-//    while (!found && i<stoppingPlaces.size()) {
-//      place = stoppingPlaces.get(i);
-//      float distanceX = (angkot.getXPosition()-place.getXPosition())*(angkot.getXPosition()-place.getXPosition());
-//      float distanceY = (angkot.getYPosition()-place.getYPosition())*(angkot.getYPosition()-place.getYPosition());
-//      float distance = (float) Math.sqrt(distanceX + distanceY);
-//      if (distance < 200) {
-//        found = true;
-//      } else {
-//        i++;
-//        
-//      }
-//    }
-//    if (found) {
-//      if (place.getName().contains("Terminal")) {
-//        stateContext.setState(new StopAtTerminalState(angkot));
-//      } else {
-//        stateContext.setState(new StopAtAngkotStopState(angkot));
-//      }
-//      found = false;
-//    }
-    //if (angkot.getXPosition() > 200) {
-//      stateContext.setState(new StopAtTerminalState(angkot.getXPosition(),angkot.getYPosition(),angkot));
-    //}
     if ((angkot.getXPosition() == 150) && (angkot.getYPosition() == 120)) {
       stateContext.setState(new StopAtTerminalState(angkot));
     }
