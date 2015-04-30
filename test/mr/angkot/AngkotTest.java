@@ -3,11 +3,19 @@
  * @author Angela Lynn		(13513032)
  * @author Devina Ekawati	(13513088)
  * @bug Tidak ada bug ditemukan
+<<<<<<< HEAD
  */
+=======
+ */  
+>>>>>>> origin/master
 
 package mr.angkot;
 
 import java.awt.Graphics;
+<<<<<<< HEAD
+=======
+import java.awt.Graphics2D;
+>>>>>>> origin/master
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +32,11 @@ import static org.junit.Assert.*;
 
 /**
  *
+<<<<<<< HEAD
  * @author User
+=======
+ * @author Windows7
+>>>>>>> origin/master
  */
 
 
@@ -52,10 +64,17 @@ public class AngkotTest {
   /**
    * Test of getCountPassengers method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testGetCountPassengers() {
     System.out.println("getCountPassengers");
     Angkot instance = new Angkot(0,0);
+=======
+  @Test
+  public void testGetCountPassengers() {
+    System.out.println("getCountPassengers");
+    Angkot instance = new Angkot(30,50);
+>>>>>>> origin/master
     int expResult = 0;
     int result = instance.getCountPassengers();
     assertEquals(expResult, result);
@@ -64,10 +83,17 @@ public class AngkotTest {
   /**
    * Test of getEmptySpace method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testGetEmptySpace() {
     System.out.println("getEmptySpace");
     Angkot instance = new Angkot(0,0);
+=======
+  @Test
+  public void testGetEmptySpace() {
+    System.out.println("getEmptySpace");
+    Angkot instance = new Angkot(45,45);
+>>>>>>> origin/master
     int expResult = 14;
     int result = instance.getEmptySpace();
     assertEquals(expResult, result);
@@ -76,11 +102,19 @@ public class AngkotTest {
   /**
    * Test of getXPosition method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testGetXPosition() {
     System.out.println("getXPosition");
     Angkot instance = new Angkot(2F,3F);
     float expResult = 2.0F;
+=======
+  @Test
+  public void testGetXPosition() {
+    System.out.println("getXPosition");
+    Angkot instance = new Angkot(40,20);
+    float expResult = 40.0F;
+>>>>>>> origin/master
     float result = instance.getXPosition();
     assertEquals(expResult, result, 0.0);
   }
@@ -88,11 +122,19 @@ public class AngkotTest {
   /**
    * Test of getYPosition method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testGetYPosition() {
     System.out.println("getYPosition");
     Angkot instance = new Angkot(2F,3F);
     float expResult = 3.0F;
+=======
+  @Test
+  public void testGetYPosition() {
+    System.out.println("getYPosition");
+    Angkot instance = new Angkot(40,20);
+    float expResult = 20.0F;
+>>>>>>> origin/master
     float result = instance.getYPosition();
     assertEquals(expResult, result, 0.0);
   }
@@ -100,39 +142,64 @@ public class AngkotTest {
   /**
    * Test of setX method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testSetX() {
     System.out.println("setX");
     float _x = 5.0F;
     Angkot instance = new Angkot(2F,3F);
+=======
+  @Test
+  public void testSetX() {
+    System.out.println("setX");
+    float _x = 35.0F;
+    Angkot instance = new Angkot(30,30);
+>>>>>>> origin/master
     instance.setX(_x);
   }
 
   /**
    * Test of setY method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testSetY() {
     System.out.println("setY");
     float _y = 2.0F;
     Angkot instance = new Angkot(2F,3F);
+=======
+  @Test
+  public void testSetY() {
+    System.out.println("setY");
+    float _y = 80.0F;
+    Angkot instance = new Angkot(20,20);
+>>>>>>> origin/master
     instance.setY(_y);
   }
 
   /**
    * Test of add method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testAdd() {
     System.out.println("add");
     Passenger passenger = new Passenger();
     Angkot instance = new Angkot(2F, 3F);
+=======
+  @Test
+  public void testAdd() {
+    System.out.println("add");
+    Passenger passenger = new Passenger();
+    Angkot instance = new Angkot(35,35);
+>>>>>>> origin/master
     instance.add(passenger);
   }
 
   /**
    * Test of clear method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testClear() {
     System.out.println("clear");
@@ -140,28 +207,57 @@ public class AngkotTest {
     Angkot instance = new Angkot(2F, 3F);
     Passenger passenger = new Passenger();
     instance.add(passenger);
+=======
+  @Test
+  public void testClear() {
+    System.out.println("clear");
+    int index = 0;
+    Angkot instance = new Angkot(45,45);
+    Passenger pass = new Passenger();
+    Passenger pass2 = new Passenger();
+    instance.add(pass);
+    instance.add(pass2);
+>>>>>>> origin/master
     instance.clear(index);
   }
 
   /**
    * Test of clearAll method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testClearAll() {
     System.out.println("clearAll");
     Angkot instance = new Angkot(2F, 3F);
     Passenger passenger = new Passenger();
     instance.add(passenger);
+=======
+  @Test
+  public void testClearAll() {
+    System.out.println("clearAll");
+    Angkot instance = new Angkot(30,30);
+    Passenger pass = new Passenger();
+    Passenger pass2 = new Passenger();
+    instance.add(pass);
+    instance.add(pass2);
+>>>>>>> origin/master
     instance.clearAll();
   }
 
   /**
    * Test of isEmpty method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testIsEmpty() {
     System.out.println("isEmpty");
     Angkot instance = new Angkot(2F, 3F);
+=======
+  @Test
+  public void testIsEmpty() {
+    System.out.println("isEmpty");
+    Angkot instance = new Angkot(50,50);
+>>>>>>> origin/master
     boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
@@ -170,10 +266,17 @@ public class AngkotTest {
   /**
    * Test of isFull method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testIsFull() {
     System.out.println("isFull");
     Angkot instance = new Angkot(2F, 3F);
+=======
+  @Test
+  public void testIsFull() {
+    System.out.println("isFull");
+    Angkot instance = new Angkot(45,45);
+>>>>>>> origin/master
     boolean expResult = false;
     boolean result = instance.isFull();
     assertEquals(expResult, result);
@@ -182,6 +285,7 @@ public class AngkotTest {
   /**
    * Test of run method, of class Angkot.
    */
+<<<<<<< HEAD
   @org.junit.Test
   public void testRun() {
     System.out.println("run");
@@ -200,4 +304,12 @@ public class AngkotTest {
     instance.paintComponent(g);
   }
   
+=======
+  @Test
+  public void testRun() {
+    System.out.println("run");
+    Angkot instance = new Angkot(60,40);
+    instance.run();
+  }
+>>>>>>> origin/master
 }

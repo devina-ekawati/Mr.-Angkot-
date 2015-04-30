@@ -51,6 +51,7 @@ public class Angkot extends JComponent implements Runnable {
     capacity = 14;
     x = _x;
     y = _y;
+    stoppingPlaces = new ArrayList<>();
     state = new StateContext(this, stoppingPlaces);
   }
   
