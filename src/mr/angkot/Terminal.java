@@ -21,9 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-/** @class Terminal
- *  @brief Kelas yang menampung sebuah objek terminal yang mengimplementasikan interface StoppingPlace
- */
 public class Terminal extends JComponent implements StoppingPlace, Runnable {
   // Atribut
   private String name; //< Nama terminal

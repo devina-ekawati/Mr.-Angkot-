@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class Passenger {
   /** 
-   * Konstruktor
+   * Konstruktor default
   */
   public Passenger() {}
   

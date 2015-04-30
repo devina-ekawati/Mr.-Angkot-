@@ -22,7 +22,9 @@ public class StopAtTerminalState implements StateType {
   private Angkot angkot;
   
   /**
-    * Konstruktor
+    * Konstruktor dengan parameter
+    * Menciptakan objek dengan atribut angkot sesuai dengan parameter
+    * @param _angkot yang akan berhenti pada terminal
     */
   public StopAtTerminalState(Angkot _angkot) {
     angkot = _angkot;
