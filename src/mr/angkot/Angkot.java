@@ -22,8 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Devina
+ * Konstruktor
  */
 public class Angkot extends JComponent implements Runnable {
   // Atribut
@@ -34,7 +33,9 @@ public class Angkot extends JComponent implements Runnable {
   private float y;
   private StateContext state;
   
-  // Method
+  /**
+  * Konstruktor dengan parameter
+  */
   public Angkot(ArrayList<StoppingPlace> _stoppingPlaces) {
     setLayout(null);
     passengers = new ArrayList<>();
@@ -45,6 +46,9 @@ public class Angkot extends JComponent implements Runnable {
     state = new StateContext(this, stoppingPlaces);
   }
   
+  /**
+  * Konstruktor dengan parameter
+  */
   public Angkot(float _x, float _y) {
     setLayout(null);
     passengers = new ArrayList<>();
@@ -55,49 +59,87 @@ public class Angkot extends JComponent implements Runnable {
     state = new StateContext(this, stoppingPlaces);
   }
   
+  /**
+  * Getter jumlah passengers
+  */
   public int getCountPassengers() {
     return passengers.size();
   }
   
+  /**
+  * Getter jumlah tempat kosong di dalam angkot
+  */
   public int getEmptySpace() {
     return capacity - getCountPassengers();
   }
   
+  /**
+  * Getter posisi x angkot
+  */
   public float getXPosition() {
     return x;
   }
   
+  /**
+  * Getter posisi y angkot
+  */
   public float getYPosition() {
     return y;
   }
   
+  /**
+  * Setter posisi x angkot
+  */
   public void setX(float _x) {
     x = _x;
   }
   
+  /**
+  * Setter posisi y angkot
+  */
   public void setY(float _y) {
     y = _y;
   }
   
+  /**
+  * Menambah jumlah penumpang ke dalam angkot
+  */
   public void add(Passenger passenger) {
     passengers.add(passenger);
   }
   
+  /**
+  * Mengurangi jumlah penumpang dari dalam angkot
+  */
   public void clear(int index) {
     passengers.remove(index);
   }
+  
+  /**
+  * Mengurangi jumlah seluruh penumpang dari dalam angkot
+  */
   public void clearAll() {
     passengers.clear();
   }
   
+  /**
+  * Mengecek apaakah angkot masih kosong atau tidak
+  */
   public boolean isEmpty() {
     return passengers.isEmpty();
   }
   
+  /**
+  * Mengecek apaakah angkot sudah penuh atau tidak
+  */
   public boolean isFull() {
     return (passengers.size() == capacity);
   }
   
+  /**
+  * Override dari runnable untuk menjalankan thread
+  */
+  @Override
   public void run() {
     try {
       TimeUnit.MILLISECONDS.sleep(100);
@@ -108,6 +150,9 @@ public class Angkot extends JComponent implements Runnable {
     repaint();
   }
   
+  /**
+  * Override dari JComponent untuk menampilkan objek ke layar
+  */
   @Override
   public void paintComponent (Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
@@ -129,18 +174,5 @@ public class Angkot extends JComponent implements Runnable {
     }
     g2d.drawString(passengers.size() + " penumpang",x,y);
     run();
-//    try {
-//      TimeUnit.MILLISECONDS.sleep(100);
-//    } catch (InterruptedException ex) {
-//      Logger.getLogger(Angkot.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-//    Thread moveThread = new Thread(new Runnable() {
-//      public void run() {
-//        state.doAction(stoppingPlaces);
-//      }
-//    });
-//    moveThread.run();
-    //state.doAction(stoppingPlaces);
-    //repaint();
   } 
 }
