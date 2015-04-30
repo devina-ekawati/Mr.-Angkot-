@@ -20,7 +20,9 @@ import java.util.logging.Logger;
 public class StopAtAngkotStopState implements StateType {
   private Angkot angkot;
   /**
-    * Konstruktor
+    * Konstruktor dengan parameter
+    * Menciptakan objek dengan atribut angkot sesuai dengan parameter
+    * @param _angkot yang akan berhenti pada tempat pemberhentian
     */
   public StopAtAngkotStopState(Angkot _angkot) {
     angkot = _angkot;

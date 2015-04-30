@@ -46,6 +46,13 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     side = "left";
     passengers = new LinkedList<Passenger>();
   }
+  
+  /** 
+   * Konstruktor
+   * @param _name Nama halte
+   * @param _x Posisi x halte
+   * @param _y Posisi y halte
+  */
   public AngkotStop(String _name, float _x, float _y) {
     name = _name;
     x = _x;
@@ -54,57 +61,97 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
 
+  /** 
+   * Getter nama halte
+   * @return Nama halte
+  */
   @Override
   public String getName() {
     return name;
   }
   
+  /** 
+   * Getter posisi x halte
+   * @return Posisi x halte
+  */
   @Override
   public float getXPosition() {
     return x;
   }
   
+  /** 
+   * Getter posisi y halte
+   * @return Posisi y halte
+  */
   @Override
   public float getYPosition() {
     return y;
   }
   
+  /** 
+   * Getter jumlah passengers di halte
+   * @return Jumlah penumpang di halte
+  */
   @Override
   public String getCountPassengers() {
     return passengers.size() + " penumpang";
   }
    
+  /** 
+   * Setter nama halte
+   * @param _name Nama halte
+  */
   @Override
   public void setName(String _name) {
     name = _name;
   }
   
+  /** 
+   * Setter posisi x halte
+   * @param _x Posisi x halte
+  */
   @Override
   public void setXPosition(float _x) {
     x = _x;
   }
   
+  /** 
+   * Setter posisi y halte
+   * @param _y Posisi y halte
+  */
   @Override
   public void setYPosition(float _y) {
     y = _y;
   }
   
+  /** 
+   * Menambah Passsengers di dalam halte
+   * @param _passenger Menambah penumpang di dalam halte
+  */
   @Override
   public void addPassengers(Passenger _passenger) {
     passengers.add(_passenger);
   }
   
+  /** 
+   * Mengurangi Passengers di dalam halte
+  */
   @Override
   public void removePassengers() {
     passengers.remove();
   }
   
   // Fungsi- fungsi lainnya
+  /** 
+   * Mengecek apakah halte masih kosong
+   * @return True apabila halte kosong
+  */
   @Override
   public boolean isEmpty() {
     return passengers.isEmpty();
   }
   
+  @Override
   public void run() {
     Thread producedPassengersThread = new Thread(new Runnable() {
       public void run() {
@@ -135,19 +182,10 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   }
   
   /** Menghasilkan reaksi terhadap event yang terjadi
-   *
-   *  
-   *  @param angkotEmptySpace Sisa kursi kosong di angkot yang dapat ditempati penumpang
-   *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
+   *  @param angkot Angkot
   */
   @Override
   public void reactOnEvent(Angkot angkot) {
-    // Menaikkan penumpang ke angkot
-//    int i = 0;
-//    while ((!passengers.isEmpty()) && (i<=angkotEmptySpace)) {
-//      passengers.remove();
-//      i++;
-//    }
     try {
       Class c = angkot.getClass();
       Method getCountPassengers = c.getMethod("getCountPassengers");
@@ -188,15 +226,5 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         Logger.getLogger(AngkotStop.class.getName()).log(Level.SEVERE, null, ex);
     }
-//    // Menurunkan penumpang dari angkot
-//    for (i=0; i<countPassengersGetOff; i++) {
-//      //passengers.add()
-//    }
-    
-
-//    // Menurunkan penumpang dari angkot
-//    for (i=0; i<countPassengersGetOff; i++) {
-//      //passengers.add()
-//    }
   }
 }

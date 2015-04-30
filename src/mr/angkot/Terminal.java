@@ -7,7 +7,7 @@
  *  @author Irene Wiliudarsan (13513002)
  *  @author Angela Lynn       (13513032)
  *  @author Devina Ekawati    (13513088)
- *  @since  April 29st, 2015
+ *  @since  April 29th, 2015
  ************************************************************************
  */
 package mr.angkot;
@@ -21,9 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-/** @class Terminal
- *  @brief Kelas yang menampung sebuah objek terminal yang mengimplementasikan interface StoppingPlace
- */
 public class Terminal extends JComponent implements StoppingPlace, Runnable {
   // Atribut
   private String name; //< Nama terminal
@@ -48,6 +45,12 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
   
+  /** Konstruktor dengan parameter
+   *
+   * @param _name Nama terminal
+   * @param _x Posisi x terminal
+   * @param _y Posisi y terminal
+   */
   public Terminal (String _name, float _x, float _y) {
     name = _name;
     x = _x;
@@ -56,52 +59,91 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
   
+  /** 
+   * Getter nama terminal
+   * @return Nama terminal
+  */
   @Override
   public String getName() {
     return name;
   }
   
+  /** 
+   * Getter posisi x terminal
+   * @return Posisi x terminal
+  */
   @Override
   public float getXPosition() {
     return x;
   }
   
+  /** 
+   * Getter posisi y terminal
+   * @return Posisi y terminal
+  */
   @Override
   public float getYPosition() {
     return y;
   }
   
+  /** 
+   * Getter jumlah passengers di terminal
+   * @return Jumlah penumpang di terminal
+  */
   @Override
   public String getCountPassengers() {
     return passengers.size() + " penumpang";
   }
   
+  /** 
+   * Setter nama terminal
+   * @param _name Nama terminal
+  */
   @Override
   public void setName(String _name) {
     name = _name;
   }
   
+  /** 
+   * Setter posisi x terminal
+   * @param _x Posisi x terminal
+  */
   @Override
   public void setXPosition(float _x) {
     x = _x;
   }
   
+  /** 
+   * Setter posisi y terminal
+   * @param _y Posisi y terminal
+  */
   @Override
   public void setYPosition(float _y) {
     y = _y;
   }
   
+  /** 
+   * Menambah Passsengers di dalam terminal
+   * @param _passenger Menambah penumpang di dalam terminal
+  */
   @Override
   public void addPassengers(Passenger _passenger) {
     passengers.add(_passenger);
   }
   
+  /** 
+   * Mengurangi Passengers di dalam terminal
+  */
   @Override
   public void removePassengers() {
     passengers.remove();
   }
   
   // Fungsi-fungsi lainnya
+  /** 
+   * Mengecek terminal kosong atau tidak
+   * @return True apabila terminal kosong
+  */
   @Override
   public boolean isEmpty() {
     return passengers.isEmpty();
@@ -143,9 +185,7 @@ public class Terminal extends JComponent implements StoppingPlace, Runnable {
   
   /** Menurunkan seluruh penumpang saat angkot berhenti di terminal
    *
-   *  @param angkotFilledSpace Sisa kursi kosong di angkot yang dapat ditempati penumpang
-   *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
-   * 
+   *  @param angkot Angkot yang berhenti di terminal
   */
   @Override
   public void reactOnEvent(Angkot angkot) {
