@@ -52,6 +52,7 @@ public class Angkot extends JComponent implements Runnable {
     color = "Yellow";
     x = _x;
     y = _y;
+    stoppingPlaces = new ArrayList<>();
     state = new StateContext(this, stoppingPlaces);
   }
   
