@@ -49,6 +49,9 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Konstruktor
+   * @param _name Nama halte
+   * @param _x Posisi x halte
+   * @param _y Posisi y halte
   */
   public AngkotStop(String _name, float _x, float _y) {
     name = _name;
@@ -60,6 +63,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
 
   /** 
    * Getter nama halte
+   * @return Nama halte
   */
   @Override
   public String getName() {
@@ -68,6 +72,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Getter posisi x halte
+   * @return Posisi x halte
   */
   @Override
   public float getXPosition() {
@@ -76,6 +81,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Getter posisi y halte
+   * @return Posisi y halte
   */
   @Override
   public float getYPosition() {
@@ -84,6 +90,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Getter jumlah passengers di halte
+   * @return Jumlah penumpang di halte
   */
   @Override
   public String getCountPassengers() {
@@ -92,6 +99,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
    
   /** 
    * Setter nama halte
+   * @param _name Nama halte
   */
   @Override
   public void setName(String _name) {
@@ -100,6 +108,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Setter posisi x halte
+   * @param _x Posisi x halte
   */
   @Override
   public void setXPosition(float _x) {
@@ -108,6 +117,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Setter posisi y halte
+   * @param _y Posisi y halte
   */
   @Override
   public void setYPosition(float _y) {
@@ -116,6 +126,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   
   /** 
    * Menambah Passsengers di dalam halte
+   * @param _passenger Menambah penumpang di dalam halte
   */
   @Override
   public void addPassengers(Passenger _passenger) {
@@ -123,7 +134,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   }
   
   /** 
-   * Mengurangi Passsengers di dalam halte
+   * Mengurangi Passengers di dalam halte
   */
   @Override
   public void removePassengers() {
@@ -133,6 +144,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   // Fungsi- fungsi lainnya
   /** 
    * Mengecek apakah halte masih kosong
+   * @return True apabila halte kosong
   */
   @Override
   public boolean isEmpty() {
@@ -170,10 +182,7 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   }
   
   /** Menghasilkan reaksi terhadap event yang terjadi
-   *
-   *  
-   *  @param angkotEmptySpace Sisa kursi kosong di angkot yang dapat ditempati penumpang
-   *  @return Sisa kursi kosong di angkot setelah penumpang naik ke angkot
+   *  @param angkot Angkot
   */
   @Override
   public void reactOnEvent(Angkot angkot) {
