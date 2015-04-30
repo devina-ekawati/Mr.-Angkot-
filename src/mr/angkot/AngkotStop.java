@@ -46,6 +46,10 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     side = "left";
     passengers = new LinkedList<Passenger>();
   }
+  
+  /** 
+   * Konstruktor
+  */
   public AngkotStop(String _name, float _x, float _y) {
     name = _name;
     x = _x;
@@ -54,57 +58,88 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     passengers = new LinkedList<Passenger>();
   }
 
+  /** 
+   * Getter nama halte
+  */
   @Override
   public String getName() {
     return name;
   }
   
+  /** 
+   * Getter posisi x halte
+  */
   @Override
   public float getXPosition() {
     return x;
   }
   
+  /** 
+   * Getter posisi y halte
+  */
   @Override
   public float getYPosition() {
     return y;
   }
   
+  /** 
+   * Getter jumlah passengers di halte
+  */
   @Override
   public String getCountPassengers() {
     return passengers.size() + " penumpang";
   }
    
+  /** 
+   * Setter nama halte
+  */
   @Override
   public void setName(String _name) {
     name = _name;
   }
   
+  /** 
+   * Setter posisi x halte
+  */
   @Override
   public void setXPosition(float _x) {
     x = _x;
   }
   
+  /** 
+   * Setter posisi y halte
+  */
   @Override
   public void setYPosition(float _y) {
     y = _y;
   }
   
+  /** 
+   * Menambah Passsengers di dalam halte
+  */
   @Override
   public void addPassengers(Passenger _passenger) {
     passengers.add(_passenger);
   }
   
+  /** 
+   * Mengurangi Passsengers di dalam halte
+  */
   @Override
   public void removePassengers() {
     passengers.remove();
   }
   
   // Fungsi- fungsi lainnya
+  /** 
+   * Mengecek apakah halte masih kosong
+  */
   @Override
   public boolean isEmpty() {
     return passengers.isEmpty();
   }
   
+  @Override
   public void run() {
     Thread producedPassengersThread = new Thread(new Runnable() {
       public void run() {
@@ -142,12 +177,6 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
   */
   @Override
   public void reactOnEvent(Angkot angkot) {
-    // Menaikkan penumpang ke angkot
-//    int i = 0;
-//    while ((!passengers.isEmpty()) && (i<=angkotEmptySpace)) {
-//      passengers.remove();
-//      i++;
-//    }
     try {
       Class c = angkot.getClass();
       Method getCountPassengers = c.getMethod("getCountPassengers");
@@ -188,15 +217,5 @@ public class AngkotStop extends JComponent implements StoppingPlace, Runnable {
     catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
         Logger.getLogger(AngkotStop.class.getName()).log(Level.SEVERE, null, ex);
     }
-//    // Menurunkan penumpang dari angkot
-//    for (i=0; i<countPassengersGetOff; i++) {
-//      //passengers.add()
-//    }
-    
-
-//    // Menurunkan penumpang dari angkot
-//    for (i=0; i<countPassengersGetOff; i++) {
-//      //passengers.add()
-//    }
   }
 }
