@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/Angkot.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/StateContext.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/StopAtAngkotStopState.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/StopAtTerminalState.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/MoveState.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/StoppingPlace.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/Passenger.java</file>
-            <file>file:/C:/Users/Windows7/Desktop/OOP/Mr.-Angkot-/src/mr/angkot/StateType.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
